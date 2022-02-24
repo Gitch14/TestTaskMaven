@@ -1,31 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.sql.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Main extends Boolean{
+public class Main {
 
-/*
-    public class DBConnect {
-        private Connection con;
-        private Statement st;
-        private ResultSet rs;
-
-        public DBConnect() {
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://ps1.thehost.com.ua:3306/TestTaskMaven", "TestTaskMaven1", "Root12345");
-
-            } catch (Exception ex) {
-                System.out.println("Error: " + ex);
-            }
-        }
-    }
-
-    */
 
     public static void main(String[] args) {
 
@@ -144,7 +125,7 @@ public class Main extends Boolean{
                         lexemes.add(new Lexeme(LexemeType.NUMBER, sb.toString()));
                     } else {
                         if (c != ' ') {
-                            throw new RuntimeException("Unexpected character: " + c);
+                            System.out.println("Error");
                         }
                         pos++;
                     }
@@ -165,7 +146,6 @@ public class Main extends Boolean{
     }
 
     public static int plusminus(LexemeBuffer lexemes) {
-        Boolean bool = new Boolean();
         int value = multdiv(lexemes);
         while (true) {
             Lexeme lexeme = lexemes.next();
@@ -182,14 +162,13 @@ public class Main extends Boolean{
                     return value;
                 default:
                     System.out.println("Error");
-                    bool.bool = false;
-                    System.out.println(bool.bool);
+
             }
         }
     }
 
     public static int multdiv(LexemeBuffer lexemes) {
-        Boolean bool = new Boolean();
+
         int value = factor(lexemes);
         while (true) {
             Lexeme lexeme = lexemes.next();
@@ -208,14 +187,13 @@ public class Main extends Boolean{
                     return value;
                 default:
                     System.out.println("Error");
-                    bool.bool = false;
-                    System.out.println(bool.bool);
+
             }
         }
     }
 
     public static int factor(LexemeBuffer lexemes) {
-        Boolean bool = new Boolean();
+
         Lexeme lexeme = lexemes.next();
         switch (lexeme.type) {
             case NUMBER:
@@ -224,18 +202,15 @@ public class Main extends Boolean{
                 int value = plusminus(lexemes);
                 lexeme = lexemes.next();
                 if (lexeme.type != LexemeType.RIGHT_BRACKET) {
-                    System.out.println("Error");
-                    bool.bool = false;
-                    System.out.println(bool.bool);
+                    System.out.println("Отстствует скобка закрывающая");
+
                 }else {
-                    bool.bool=true;
-                    System.out.println(bool.bool);
+
                     return value;
                 }
             default:
                 System.out.println("Error");
-                bool.bool = false;
-                System.out.println(bool.bool);
+
 
         }
         return 0;
