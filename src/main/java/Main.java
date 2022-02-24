@@ -202,7 +202,7 @@ public class Main {
                 int value = plusminus(lexemes);
                 lexeme = lexemes.next();
                 if (lexeme.type != LexemeType.RIGHT_BRACKET) {
-                    System.out.println("Отстствует скобка закрывающая");
+                    System.out.println("Missing bracket");
 
                 }else {
 
